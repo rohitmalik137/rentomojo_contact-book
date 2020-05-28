@@ -6,48 +6,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title></title>
 </head>
 <body>
-    <div class="main">
+    <div class="main" style="position: relative;">
         <div class="header">
-            rm-phonebook
+            <span>rm-phonebook</span>
         </div>
-        <input type="search" name="search" class="search" />
-        <div class="content">
-            <?php $list_of_contacts = Ruser::get_contacts();
+
+
+        <?php $list_of_contacts = Ruser::get_contacts();
                     if($list_of_contacts){
                         while($rows = mysqli_fetch_assoc($list_of_contacts)){
                             $posts[] = $rows;
                         }
                         // usort($posts, fn($a, $b) => strcmp($a->name, $b->name));
                         // $posts = asort($posts);
+                        $count = 0;
+                        foreach($posts as $rows){
+                            $count++;
+                        }
+                        $i = 0;
+        ?>
+
+
+        <input type="text" name="search" onkeyup="search_fun(<?php echo $count  ?>);" id="search_box" class="search" placeholder="&#x1F50D;" />
+        <div class="content">
+            <?php
                         foreach($posts as $rows){
                             ?>
-                            <div class="info">
-                                <span> <?php echo $rows['name']."  <br/>"; ?></span>
-                                <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="info">
-                                <span> <?php echo $rows['dob']."  <br/>"; ?></span>
-                                <div>
-                                    <input type="submit" name="edit" value="Edit" />
-                                    <input type="submit" name="edit" value="Remove" />
+                            <div id="<?php echo "_".$i ?>" class="outer_info">
+                                <div class="info">
+                                    <span id="<?php echo "__".$i ?>"><?php echo $rows['name']."  <br/>"; ?></span>
+                                    <i id="down" class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
+                                    <i id="up" style="display: none;" class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div class="extendable" style="display: none;">
+                                    <div class="info">
+                                        <span> <?php
+                                            if($rows['dob'] == '0000-00-00');
+                                            else echo $rows['dob']."  <br/>"; ?></span>
+                                        <div>
+                                            <input type="submit" name="edit" class="button edit" value="Edit" />
+                                            <input type="submit" name="edit" class="button remove" value="Remove" />
+                                        </div>
+                                    </div>
+                                    <div class="contact_details">
+                                        <span style="margin-right: 30px;">&#9742;<?php echo $rows['contact_number']."  <br/>"; ?></span>
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i><?php echo $rows['email']."  <br/>"; ?></span>
+                                    </div>
                                 </div>
                             </div>
                             <?php
+                            $i++;
                         }
                     }
                 
-                
                 ?>
         </div>
+        <i class="fa fa-plus-circle fa-3x" style="cursor: pointer; display: block; position: absolute; bottom: 5px; right: 10px;" aria-hidden="true" id="add_contact"></i>
     </div>
 
-
-
-    <i class="fa fa-plus-circle fa-3x" aria-hidden="true" id="add_contact"></i>
+    <script src="js.js"></script>
     <script>
         var btn = document.getElementById('add_contact');
         btn.addEventListener('click', function() {
