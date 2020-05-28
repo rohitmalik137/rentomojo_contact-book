@@ -25,6 +25,11 @@ class Ruser{
         if (mysqli_num_rows($result) >= 1) return $result;
         return false;
     }
+    public static function remove_contact($contact){
+        global $database;
+        $sql = "DELETE FROM `contact_details` WHERE `contact_number`='{$contact}'";
+        $result = $database->query($sql);
+    }
 }
 
 ?>

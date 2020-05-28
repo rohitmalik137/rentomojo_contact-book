@@ -1,5 +1,5 @@
 .main{
-    /* background-color: aquamarine; */
+    background-color: rgb(117, 105, 105);
     width: 60%;
     margin: 50px auto;
     position: relative;
@@ -52,6 +52,7 @@
 }
 .remove{
     background-color: rgb(255, 119, 119);
+    cursor: pointer;
 }
 .edit{
     background-color: rgb(119, 119, 255);

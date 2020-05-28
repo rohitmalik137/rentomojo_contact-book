@@ -14,3 +14,20 @@ function search_fun(count){
         }
     }
 }
+
+function show(show_id){
+    console.log(show_id);
+    var id = show_id.id;
+    var arr = id.split("_");
+    document.getElementById(id).style.display = 'none';
+    document.getElementById("up_"+arr[1]).style.display = 'block';
+    document.getElementById("extend_"+arr[1]).style.display = 'block';
+}
+
+function hide(hide_id){
+    var id = hide_id.id;
+    var arr = id.split("_");
+    document.getElementById(id).style.display = 'none';
+    document.getElementById("down_"+arr[1]).style.display = 'block';
+    document.getElementById("extend_"+arr[1]).style.display = 'none';
+}
