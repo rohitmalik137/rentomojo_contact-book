@@ -46,7 +46,7 @@
                                             if($rows['dob'] == '0000-00-00');
                                             else echo $rows['dob']."  <br/>"; ?></span>
                                         <div>
-                                            <input type="submit"  name="edit" class="button edit" value="Edit" />
+                                            <a href="update_contact.php?name=<?php echo $rows['name']; ?>&contact_number=<?php echo $rows['contact_number']; ?>&dob=<?php echo $rows['dob']; ?>&email=<?php echo $rows['email']; ?>" class="button edit">Edit</a>
                                             <a href="remove_contact.php?details=<?php echo $rows['contact_number']; ?>" class="button remove">Remove</a>
                                         </div>
                                     </div>

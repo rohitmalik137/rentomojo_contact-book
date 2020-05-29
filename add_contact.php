@@ -35,7 +35,10 @@
         $contact = trim($_POST['contact']);
         $email = trim($_POST['email']);
 
-        Ruser::add_contact($name,$contact, $email, $dob="null");
+        $is_success = Ruser::add_contact($name,$contact, $email, $dob);
+        if($is_success){
+            header("Location: index.php");
+        }
     }
 
 ?>

@@ -50,6 +50,9 @@
     border: none;
     color: white;
 }
+a{
+    text-decoration: none;
+}
 .remove{
     background-color: rgb(255, 119, 119);
     cursor: pointer;
