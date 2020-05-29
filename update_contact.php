@@ -8,7 +8,6 @@
         $email = $_REQUEST['email'];
     }
 ?>
-<?php echo $contact_no; ?>
 
 <!DOCTYPE html>
 <html lang="en">

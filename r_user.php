@@ -35,9 +35,11 @@ class Ruser{
         return false;
     }
 
-    public static function get_contacts(){
+    public static function get_contacts($start_from, $contacts_per_page){
         global $database;
-        $sql = "SELECT * FROM `contact_details`";
+        $start_from = $database->escape_string($start_from);
+        $contacts_per_page = $database->escape_string($contacts_per_page);
+        $sql = "SELECT * FROM `contact_details` LIMIT $start_from, $contacts_per_page";
         $result = $database->query($sql);
         if (mysqli_num_rows($result) >= 1) return $result;
         return false;
@@ -69,6 +71,14 @@ class Ruser{
     //     $old_contact_number = $database->escape_string($old_contact_number);
     //     $sql = "SELECT `id` FROM `contact_details` WHERE";
     // }
+
+    public static function get_total_lines(){
+        global $database;
+        $sql = "SELECT * FROM `contact_details`";
+        $result = $database->query($sql);
+        if (mysqli_num_rows($result) >= 1) return mysqli_num_rows($result);
+        return 0;
+    }
 }
 
 ?>

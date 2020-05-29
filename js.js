@@ -20,6 +20,8 @@ function show(show_id){
     var id = show_id.id;
     var arr = id.split("_");
     document.getElementById(id).style.display = 'none';
+    document.getElementsByClassName('outer_info')[arr[1]].style.backgroundColor = 'rgb(158, 204, 247)';
+    document.getElementsByClassName('contact_details')[arr[1]].style.backgroundColor = 'rgb(193, 221, 247)';
     document.getElementById("up_"+arr[1]).style.display = 'block';
     document.getElementById("extend_"+arr[1]).style.display = 'block';
 }
@@ -28,6 +30,7 @@ function hide(hide_id){
     var id = hide_id.id;
     var arr = id.split("_");
     document.getElementById(id).style.display = 'none';
+    document.getElementsByClassName('outer_info')[arr[1]].style.backgroundColor = 'transparent';
     document.getElementById("down_"+arr[1]).style.display = 'block';
     document.getElementById("extend_"+arr[1]).style.display = 'none';
 }
