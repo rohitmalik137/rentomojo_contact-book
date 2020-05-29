@@ -31,7 +31,7 @@
             <label>Email:</label><input type="email" name="email" value="<?php echo (isset($_REQUEST['email'])) ? ($email) : (''); ?>" required /><br><br>
             <input type="hidden" name="nm" value="<?php echo (isset($_REQUEST['name'])) ? ($name) : (''); ?>" />
             <input type="hidden" name="cntct" value="<?php echo (isset($_REQUEST['contact_number'])) ? ($contact_no) : (''); ?>" />
-            <input type="submit" name="save" value="Save" />
+            <div class="submit_tag"><input type="submit" name="save" value="Save" /></div>
         </form>
     </div>
 </body>

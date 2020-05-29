@@ -16,11 +16,16 @@
         </header>
         <form action="add_contact.php" method="POST" class="form">
             <!-- <div style="font-size: larger;"><i class="fa fa-arrow-left" aria-hidden="true"></i><strong style="padding-left: 10px;;">Add New Contact</strong></div> -->
-            <label>Name:</label><input type="text" name="name" required/><br><br>
-            <label>DOB</label><input type="date" name="dob" /><br><br>
+            <div style='font-size: larger;'>
+                <i style='padding-right:10px;' class="fa fa-arrow-left" aria-hidden="true"></i>
+                <span>Add New Contact</span>
+            </div>
+            <hr>
+            <label>Name:</label><br><input type="text" name="name" required/><br><br>
+            <label>DOB</label><br><input type="date" name="dob" /><br><br>
             <label>Mobile Number:</label><input type="tel" name="contact" required /><br><br>
             <label>Email:</label><input type="email" name="email" required /><br><br>
-            <input type="submit" name="save" value="Save" />
+            <div class="submit_tag"><input type="submit" name="save" value="Save" /></div>
         </form>
     </div>
 </body>
