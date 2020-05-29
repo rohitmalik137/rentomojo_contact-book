@@ -15,6 +15,11 @@ function search_fun(count){
     }
 }
 
+var btn = document.getElementById('add_contact');
+btn.addEventListener('click', function() {
+    document.location.href = 'add_contact.php';
+});
+
 function show(show_id){
     console.log(show_id);
     var id = show_id.id;

@@ -45,6 +45,19 @@ class Ruser{
         return false;
     }
 
+    // public static function get_all_contacts(){
+    //     global $database;
+    //     $sql = "SELECT * FROM `contact_details`";
+    //     $result = $database->query($sql);
+    //     if (mysqli_num_rows($result) >= 1) return $result;
+    //     return false;
+    // }
+
+    // public static function sort_data(){
+    //     global $database;
+    //     self::get_contacts();
+    // }
+
     public static function remove_contact($contact){
         global $database;
         $sql = "DELETE FROM `contact_details` WHERE `contact_number`='{$contact}'";
@@ -78,6 +91,30 @@ class Ruser{
         $result = $database->query($sql);
         if (mysqli_num_rows($result) >= 1) return mysqli_num_rows($result);
         return 0;
+    }
+
+    public static function array_msort($array, $cols){
+        $colarr = array();
+        foreach ($cols as $col => $order) {
+            $colarr[$col] = array();
+            foreach ($array as $k => $row) { $colarr[$col]['_'.$k] = strtolower($row[$col]); }
+        }
+        $eval = 'array_multisort(';
+        foreach ($cols as $col => $order) {
+            $eval .= '$colarr[\''.$col.'\'],'.$order.',';
+        }
+        $eval = substr($eval,0,-1).');';
+        eval($eval);
+        $ret = array();
+        foreach ($colarr as $col => $arr) {
+            foreach ($arr as $k => $v) {
+                $k = substr($k,1);
+                if (!isset($ret[$k])) $ret[$k] = $array[$k];
+                $ret[$k][$col] = $array[$k][$col];
+            }
+        }
+        return $ret;
+    
     }
 }
 

@@ -14,8 +14,7 @@
         <div class="header">
             <span>rm-phonebook</span>
         </div>
-
-
+        
         <?php $list_of_contacts = Ruser::get_contacts($start_from, $contacts_per_page);
                     if($list_of_contacts){
                         while($rows = mysqli_fetch_assoc($list_of_contacts)){
@@ -23,14 +22,15 @@
                         }
                         // usort($posts, fn($a, $b) => strcmp($a->name, $b->name));
                         // $posts = asort($posts);
+                        // print_r($posts);
+                        $posts = Ruser::array_msort($posts, array('name'=>SORT_ASC));
+                        // print_r($posts);
                         $count = 0;
                         foreach($posts as $rows){
                             $count++;
                         }
                         $i = 0;
         ?>
-
-
         <input type="text" name="search" onkeyup="search_fun(<?php echo $count  ?>);" id="search_box" class="search" placeholder="&#x1F50D;" />
         <div class="content">
             <?php
@@ -74,11 +74,5 @@
     </div>
 
     <script src="js.js"></script>
-    <script>
-        var btn = document.getElementById('add_contact');
-        btn.addEventListener('click', function() {
-            document.location.href = 'add_contact.php';
-        });
-    </script>
 </body>
 </html>
